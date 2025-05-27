@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <title>Probabilități pe clase I–XII (live în procente)</title>
+  <style>
+    table { border-collapse: collapse; margin: 20px auto; }
+    td, th { border: 1px solid #000; padding: 6px 8px; text-align: center; }
+    input { width: 60px; }
+  </style>
+</head>
+<body>
+
+<h1>Sistem Probabilistic</h1>
+<p>Eu foarte des am auzit de la profesori anumite lucruri cum ar fi că este periculos să îți lasi lucrurile în clasă, nu trebuit de lăsat contul logat pe calculatorul din clasă că elevi ect.<br> 
+Din această cauză m-am să constuiesc un model matematic ce să simuleze probabilitatea unui eveniment să se întâmple în scoală. Mai jos avem un tabel cu următoarelele coloane <br>
+k - numărul de clase de un timp în care predați<br>
+n - nr de elevi pe clasă(ex dacă aveți 2 clase cu 20 si 30 elevi n va fi 25 elevi pe clasă) <br>
+p per elev - reprezintă probabilitatea ca un elev să facă ceva(ex să hăcuiască contul profesorului, să aibă atac de cord, să fure, să iasă cu pedia peste 9.5 la toate materiiile ect)<br>
+P(clasă) - probabilitatea ca -ntro clasă cu acelasi număr să se întîmple ceva(ex în o clasă de a VI un elev să îsi rupă piciorul)<br>   
+P(toate clase) -probabilitatea ca îm minim o clasă cu acelasi număr să se întîmple ceva(ex minim în clasă de a VI un elev să îsi rupă piciorul) </br>
+Total - probabilitatewa ca în toate clasele predate pe parcurusl a un anumit număr de ani să se întâmple ceva <br>
+P per an - probabilitatewa ca într-un an în toate clasele predate să se întâmple ceva</p>
+
+<table id="probTable">
+  <tr>
+    <th>Clasa</th>
+    <th>Nr. clase (k)</th>
+    <th>Elevi/clasă (n)</th>
+    <th>p per elev (%)</th>
+    <th>% P(clasă)</th>
+    <th>% P(toate clase)</th>
+  </tr>
+
+  <!-- Rânduri I–XII -->
+  <tr><td>I</td>   <td><input type="number" min="0" oninput="calculateAll()"></td> <td><input type="number" min="0" oninput="calculateAll()"></td> <td><input type="number" min="0" max="100" step="0.1" oninput="calculateAll()"></td> <td class="pc"></td> <td class="pk"></td></tr>
+  <tr><td>II</td>  <td><input type="number" min="0" oninput="calculateAll()"></td> <td><input type="number" min="0" oninput="calculateAll()"></td> <td><input type="number" min="0" max="100" step="0.1" oninput="calculateAll()"></td> <td class="pc"></td> <td class="pk"></td></tr>
+  <tr><td>III</td> <td><input type="number" min="0" oninput="calculateAll()"></td> <td><input type="number" min="0" oninput="calculateAll()"></td> <td><input type="number" min="0" max="100" step="0.1" oninput="calculateAll()"></td> <td class="pc"></td> <td class="pk"></td></tr>
+  <tr><td>IV</td>  <td><input type="number" min="0" oninput="calculateAll()"></td> <td><input type="number" min="0" oninput="calculateAll()"></td> <td><input type="number" min="0" max="100" step="0.1" oninput="calculateAll()"></td> <td class="pc"></td> <td class="pk"></td></tr>
+  <tr><td>V</td>   <td><input type="number" min="0" oninput="calculateAll()"></td> <td><input type="number" min="0" oninput="calculateAll()"></td> <td><input type="number" min="0" max="100" step="0.1" oninput="calculateAll()"></td> <td class="pc"></td> <td class="pk"></td></tr>
+  <tr><td>VI</td>  <td><input type="number" min="0" oninput="calculateAll()"></td> <td><input type="number" min="0" oninput="calculateAll()"></td> <td><input type="number" min="0" max="100" step="0.1" oninput="calculateAll()"></td> <td class="pc"></td> <td class="pk"></td></tr>
+  <tr><td>VII</td> <td><input type="number" min="0" oninput="calculateAll()"></td> <td><input type="number" min="0" oninput="calculateAll()"></td> <td><input type="number" min="0" max="100" step="0.1" oninput="calculateAll()"></td> <td class="pc"></td> <td class="pk"></td></tr>
+  <tr><td>VIII</td><td><input type="number" min="0" oninput="calculateAll()"></td> <td><input type="number" min="0" oninput="calculateAll()"></td> <td><input type="number" min="0" max="100" step="0.1" oninput="calculateAll()"></td> <td class="pc"></td> <td class="pk"></td></tr>
+  <tr><td>IX</td>  <td><input type="number" min="0" oninput="calculateAll()"></td> <td><input type="number" min="0" oninput="calculateAll()"></td> <td><input type="number" min="0" max="100" step="0.1" oninput="calculateAll()"></td> <td class="pc"></td> <td class="pk"></td></tr>
+  <tr><td>X</td>   <td><input type="number" min="0" oninput="calculateAll()"></td> <td><input type="number" min="0" oninput="calculateAll()"></td> <td><input type="number" min="0" max="100" step="0.1" oninput="calculateAll()"></td> <td class="pc"></td> <td class="pk"></td></tr>
+  <tr><td>XI</td>  <td><input type="number" min="0" oninput="calculateAll()"></td> <td><input type="number" min="0" oninput="calculateAll()"></td> <td><input type="number" min="0" max="100" step="0.1" oninput="calculateAll()"></td> <td class="pc"></td> <td class="pk"></td></tr>
+  <tr><td>XII</td> <td><input type="number" min="0" oninput="calculateAll()"></td> <td><input type="number" min="0" oninput="calculateAll()"></td> <td><input type="number" min="0" max="100" step="0.1" oninput="calculateAll()"></td> <td class="pc"></td> <td class="pk"></td></tr>
+</table>
+
+<script>
+function calculateAll() {
+  const rows = document.querySelectorAll('#probTable tr');
+  for (let i = 1; i < rows.length; i++) {
+    const cells = rows[i].cells;
+    const k_percent = Number(cells[1].querySelector('input').value); // k input as count, but percentage is irrelevant
+    const n         = Number(cells[2].querySelector('input').value);
+    const p_percent = Number(cells[3].querySelector('input').value);
+
+    const k = k_percent;          // deja e număr de clase
+    const p = p_percent / 100.0;  //  convertim în fracție
+
+    // formule
+    const pClass    = 1 - Math.pow(1 - p, n);
+    const pAnyClass = 1 - Math.pow(1 - pClass, k);
+
+    // afișăm în procente cu două zecimale
+    cells[4].textContent = (pClass    * 100).toFixed(3) + '%';
+    cells[5].textContent = (pAnyClass * 100).toFixed(3) + '%';
+  }
+}
+
+// apel inițial pentru a popula la încărcare
+window.addEventListener('DOMContentLoaded', calculateAll);
+</script>
+
+</body>
+</html>
