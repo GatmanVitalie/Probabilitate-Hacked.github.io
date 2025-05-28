@@ -1,82 +1,229 @@
 <!DOCTYPE html>
 <html lang="ro">
+
 <head>
   <meta charset="UTF-8">
   <title>Probabilități pe clase I–XII (live în procente)</title>
   <style>
-    table { border-collapse: collapse; margin: 20px auto; }
-    td, th { border: 1px solid #000; padding: 6px 8px; text-align: center; }
-    input { width: 60px; }
-  </style>
-</head>
-<body>
+    table {
+      border-collapse: collapse;
+      margin: 20px 0;
+    }
 
-<h1>Sistem Probabilistic</h1>
-<p>
-Adesea am auzit de la profesori avertismente precum: „nu e sigur să îți lași lucrurile în clasă” sau „nu trebuie să lași contul logat pe calculatorul din clasă, pentru că elevii pot profita”.<br>
-Din această cauză am decis să construiesc un model matematic care estimează probabilitatea ca un anumit eveniment să se întâmple în cadrul unei școli, având ca scop sprijinirea deciziilor legate de securitate și prevenție.<br><br>
-
-Tabelul de mai jos conține următoarele coloane:<br>
-<b>k</b> – numărul de clase (de același tip) în care predați;<br>
-<b>n</b> – numărul mediu de elevi per clasă (de exemplu, dacă aveți 2 clase cu 20 și 30 elevi, n = 25);<br>
-<b>p per elev</b> – probabilitatea ca un elev să provoace un anumit eveniment (ex: să spargă un cont, să fure ceva, să aibă un accident etc.);<br>
-<b>P(clasă)</b> – probabilitatea ca într-o clasă să se întâmple cel puțin un astfel de eveniment;<br>
-<b>P(toate clasele)</b> – probabilitatea ca într-una sau mai multe dintre cele k clase să se întâmple evenimentul;<br>
-<b>Total</b> – probabilitatea ca pe parcursul mai multor ani să apară cel puțin un astfel de eveniment;<br>
-<b>P per an</b> – probabilitatea anuală ca într-una dintre clase să se întâmple evenimentul respectiv.
-</p>
-
-
-<table id="probTable">
-  <tr>
-    <th>Clasa</th>
-    <th>Nr. clase (k)</th>
-    <th>Elevi/clasă (n)</th>
-    <th>p per elev (%)</th>
-    <th>% P(clasă)</th>
-    <th>% P(toate clase)</th>
-  </tr>
-
-  <!-- Rânduri I–XII -->
-  <tr><td>I</td>   <td><input type="number" min="0" oninput="calculateAll()"></td> <td><input type="number" min="0" oninput="calculateAll()"></td> <td><input type="number" min="0" max="100" step="0.1" oninput="calculateAll()"></td> <td class="pc"></td> <td class="pk"></td></tr>
-  <tr><td>II</td>  <td><input type="number" min="0" oninput="calculateAll()"></td> <td><input type="number" min="0" oninput="calculateAll()"></td> <td><input type="number" min="0" max="100" step="0.1" oninput="calculateAll()"></td> <td class="pc"></td> <td class="pk"></td></tr>
-  <tr><td>III</td> <td><input type="number" min="0" oninput="calculateAll()"></td> <td><input type="number" min="0" oninput="calculateAll()"></td> <td><input type="number" min="0" max="100" step="0.1" oninput="calculateAll()"></td> <td class="pc"></td> <td class="pk"></td></tr>
-  <tr><td>IV</td>  <td><input type="number" min="0" oninput="calculateAll()"></td> <td><input type="number" min="0" oninput="calculateAll()"></td> <td><input type="number" min="0" max="100" step="0.1" oninput="calculateAll()"></td> <td class="pc"></td> <td class="pk"></td></tr>
-  <tr><td>V</td>   <td><input type="number" min="0" oninput="calculateAll()"></td> <td><input type="number" min="0" oninput="calculateAll()"></td> <td><input type="number" min="0" max="100" step="0.1" oninput="calculateAll()"></td> <td class="pc"></td> <td class="pk"></td></tr>
-  <tr><td>VI</td>  <td><input type="number" min="0" oninput="calculateAll()"></td> <td><input type="number" min="0" oninput="calculateAll()"></td> <td><input type="number" min="0" max="100" step="0.1" oninput="calculateAll()"></td> <td class="pc"></td> <td class="pk"></td></tr>
-  <tr><td>VII</td> <td><input type="number" min="0" oninput="calculateAll()"></td> <td><input type="number" min="0" oninput="calculateAll()"></td> <td><input type="number" min="0" max="100" step="0.1" oninput="calculateAll()"></td> <td class="pc"></td> <td class="pk"></td></tr>
-  <tr><td>VIII</td><td><input type="number" min="0" oninput="calculateAll()"></td> <td><input type="number" min="0" oninput="calculateAll()"></td> <td><input type="number" min="0" max="100" step="0.1" oninput="calculateAll()"></td> <td class="pc"></td> <td class="pk"></td></tr>
-  <tr><td>IX</td>  <td><input type="number" min="0" oninput="calculateAll()"></td> <td><input type="number" min="0" oninput="calculateAll()"></td> <td><input type="number" min="0" max="100" step="0.1" oninput="calculateAll()"></td> <td class="pc"></td> <td class="pk"></td></tr>
-  <tr><td>X</td>   <td><input type="number" min="0" oninput="calculateAll()"></td> <td><input type="number" min="0" oninput="calculateAll()"></td> <td><input type="number" min="0" max="100" step="0.1" oninput="calculateAll()"></td> <td class="pc"></td> <td class="pk"></td></tr>
-  <tr><td>XI</td>  <td><input type="number" min="0" oninput="calculateAll()"></td> <td><input type="number" min="0" oninput="calculateAll()"></td> <td><input type="number" min="0" max="100" step="0.1" oninput="calculateAll()"></td> <td class="pc"></td> <td class="pk"></td></tr>
-  <tr><td>XII</td> <td><input type="number" min="0" oninput="calculateAll()"></td> <td><input type="number" min="0" oninput="calculateAll()"></td> <td><input type="number" min="0" max="100" step="0.1" oninput="calculateAll()"></td> <td class="pc"></td> <td class="pk"></td></tr>
-</table>
-
-<script>
-function calculateAll() {
-  const rows = document.querySelectorAll('#probTable tr');
-  for (let i = 1; i < rows.length; i++) {
-    const cells = rows[i].cells;
-    const k_percent = Number(cells[1].querySelector('input').value); // k input as count, but percentage is irrelevant
-    const n         = Number(cells[2].querySelector('input').value);
-    const p_percent = Number(cells[3].querySelector('input').value);
-
-    const k = k_percent;          // deja e număr de clase
-    const p = p_percent / 100.0;  //  convertim în fracție
-
-    // formule
-    const pClass    = 1 - Math.pow(1 - p, n);
-    const pAnyClass = 1 - Math.pow(1 - pClass, k);
-
-    // afișăm în procente cu două zecimale
-    cells[4].textContent = (pClass    * 100).toFixed(3) + '%';
-    cells[5].textContent = (pAnyClass * 100).toFixed(3) + '%';
-  }
+    .tabel {
+ /* display: inline-block; /* sau display: table; */
+  width: auto;           /* nu e obligatoriu dacă inline-block */
+  /* optional: ca să fie centrat */
+  margin: 20px auto;
+  align-self: center;
 }
 
-// apel inițial pentru a popula la încărcare
-window.addEventListener('DOMContentLoaded', calculateAll);
-</script>
+
+    td,
+    th {
+      border: 1px solid #000;
+      padding: 6px 8px;
+      text-align: center;
+    }
+
+    input {
+      width: 60px;
+    }
+
+    h2 {
+      margin-top: 20px;
+      margin-bottom: 0px;
+    }
+
+    h3 {
+      margin-top: 5px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Sistem Probabilistic</h1>
+  <p>
+    Adesea am auzit de la profesori avertismente precum: „nu e sigur să îți lași lucrurile în clasă” sau „nu trebuie să
+    lași contul logat pe calculatorul din clasă, pentru că elevii pot profita”.<br>
+    Din această cauză am decis să construiesc un model matematic care estimează probabilitatea ca un anumit eveniment să
+    se întâmple în cadrul unei școli, având ca scop sprijinirea deciziilor legate de securitate și prevenție.<br><br>
+
+    Tabelul de mai jos conține următoarele coloane:<br>
+    <b>k</b> – numărul de clase (de același tip) în care predați;<br>
+    <b>n</b> – numărul mediu de elevi per clasă (de exemplu, dacă aveți 2 clase cu 20 și 30 elevi, n = 25);<br>
+    <b>p per elev</b> – probabilitatea ca un elev să provoace un anumit eveniment (ex: să spargă un cont, să fure ceva,
+    să aibă un accident etc.);<br>
+    <b>P(clasă)</b> – probabilitatea ca într-o clasă să se întâmple cel puțin un astfel de eveniment;<br>
+    <b>P(toate clasele)</b> – probabilitatea ca într-una sau mai multe dintre cele k clase să se întâmple
+    evenimentul;<br>
+    <b>Total</b> – probabilitatea ca pe parcursul mai multor ani să apară cel puțin un astfel de eveniment;<br>
+    <b>P per an</b> – probabilitatea anuală ca într-una dintre clase să se întâmple evenimentul respectiv.
+  </p>
+
+  <div class="tabel">
+    <h2><b>Total</b>: <span id="pTotalYears">–</span></h2>
+    <h3><b>P per an</b>: <span id="pPerYear">–</span></h3>
+    <label for="yearsInput">Număr de ani:</label>
+    <input id="yearsInput" type="number" min="1" value="1" oninput="calculateAll()">
+    </p>
+
+
+    <table id="probTable">
+      <tr>
+        <th>Clasa</th>
+        <th>Nr. clase (k)</th>
+        <th>Elevi/clasă (n)</th>
+        <th>p per elev (%)</th>
+        <th>% P(clasă)</th>
+        <th>% P(toate clase)</th>
+      </tr>
+
+      <!-- Rânduri I–XII -->
+      <tr>
+        <td>XII</td>
+        <td><input type="number" min="0" oninput="calculateAll()"></td>
+        <td><input type="number" min="0" oninput="calculateAll()"></td>
+        <td><input type="number" min="0" max="100" step="0.1" oninput="calculateAll()"></td>
+        <td class="pc"></td>
+        <td class="pk"></td>
+      </tr>
+      <tr>
+        <td>XI</td>
+        <td><input type="number" min="0" oninput="calculateAll()"></td>
+        <td><input type="number" min="0" oninput="calculateAll()"></td>
+        <td><input type="number" min="0" max="100" step="0.1" oninput="calculateAll()"></td>
+        <td class="pc"></td>
+        <td class="pk"></td>
+      </tr>
+      <tr>
+        <td>X</td>
+        <td><input type="number" min="0" oninput="calculateAll()"></td>
+        <td><input type="number" min="0" oninput="calculateAll()"></td>
+        <td><input type="number" min="0" max="100" step="0.1" oninput="calculateAll()"></td>
+        <td class="pc"></td>
+        <td class="pk"></td>
+      </tr>
+      <tr>
+        <td>IX</td>
+        <td><input type="number" min="0" oninput="calculateAll()"></td>
+        <td><input type="number" min="0" oninput="calculateAll()"></td>
+        <td><input type="number" min="0" max="100" step="0.1" oninput="calculateAll()"></td>
+        <td class="pc"></td>
+        <td class="pk"></td>
+      </tr>
+      <tr>
+        <td>VIII</td>
+        <td><input type="number" min="0" oninput="calculateAll()"></td>
+        <td><input type="number" min="0" oninput="calculateAll()"></td>
+        <td><input type="number" min="0" max="100" step="0.1" oninput="calculateAll()"></td>
+        <td class="pc"></td>
+        <td class="pk"></td>
+      </tr>
+      <tr>
+        <td>VII</td>
+        <td><input type="number" min="0" oninput="calculateAll()"></td>
+        <td><input type="number" min="0" oninput="calculateAll()"></td>
+        <td><input type="number" min="0" max="100" step="0.1" oninput="calculateAll()"></td>
+        <td class="pc"></td>
+        <td class="pk"></td>
+      </tr>
+      <tr>
+        <td>VI</td>
+        <td><input type="number" min="0" oninput="calculateAll()"></td>
+        <td><input type="number" min="0" oninput="calculateAll()"></td>
+        <td><input type="number" min="0" max="100" step="0.1" oninput="calculateAll()"></td>
+        <td class="pc"></td>
+        <td class="pk"></td>
+      </tr>
+      <tr>
+        <td>V</td>
+        <td><input type="number" min="0" oninput="calculateAll()"></td>
+        <td><input type="number" min="0" oninput="calculateAll()"></td>
+        <td><input type="number" min="0" max="100" step="0.1" oninput="calculateAll()"></td>
+        <td class="pc"></td>
+        <td class="pk"></td>
+      </tr>
+      <tr>
+        <td>IV</td>
+        <td><input type="number" min="0" oninput="calculateAll()"></td>
+        <td><input type="number" min="0" oninput="calculateAll()"></td>
+        <td><input type="number" min="0" max="100" step="0.1" oninput="calculateAll()"></td>
+        <td class="pc"></td>
+        <td class="pk"></td>
+      </tr>
+      <tr>
+        <td>III</td>
+        <td><input type="number" min="0" oninput="calculateAll()"></td>
+        <td><input type="number" min="0" oninput="calculateAll()"></td>
+        <td><input type="number" min="0" max="100" step="0.1" oninput="calculateAll()"></td>
+        <td class="pc"></td>
+        <td class="pk"></td>
+      </tr>
+      <tr>
+        <td>II</td>
+        <td><input type="number" min="0" oninput="calculateAll()"></td>
+        <td><input type="number" min="0" oninput="calculateAll()"></td>
+        <td><input type="number" min="0" max="100" step="0.1" oninput="calculateAll()"></td>
+        <td class="pc"></td>
+        <td class="pk"></td>
+      </tr>
+      <tr>
+        <td>I</td>
+        <td><input type="number" min="0" oninput="calculateAll()"></td>
+        <td><input type="number" min="0" oninput="calculateAll()"></td>
+        <td><input type="number" min="0" max="100" step="0.1" oninput="calculateAll()"></td>
+        <td class="pc"></td>
+        <td class="pk"></td>
+      </tr>
+    </table>
+  </div>
+
+  <script>
+    function calculateAll() {
+      const rows = document.querySelectorAll('#probTable tr');
+      let combinedProb = 0;
+
+      for (let i = 1; i < rows.length; i++) {
+        const cells = rows[i].cells;
+        const k = Number(cells[1].querySelector('input').value);
+        const n = Number(cells[2].querySelector('input').value);
+        const p = Number(cells[3].querySelector('input').value) / 100;
+
+        if (k > 0 && n > 0 && p > 0) {
+          const pClass = 1 - Math.pow(1 - p, n);
+          const pAnyClass = 1 - Math.pow(1 - pClass, k);
+          cells[4].textContent = (pClass * 100).toFixed(3) + '%';
+          cells[5].textContent = (pAnyClass * 100).toFixed(3) + '%';
+
+          // combinăm probabilitățile anuale: 1 - (1 - p1)(1 - p2)... etc.
+          combinedProb = 1 - (1 - combinedProb) * (1 - pAnyClass);
+        } else {
+          cells[4].textContent = '';
+          cells[5].textContent = '';
+        }
+      }
+
+      const years = Number(document.getElementById('yearsInput').value);
+      const pPerYearElem = document.getElementById('pPerYear');
+      const pTotalYearsElem = document.getElementById('pTotalYears');
+
+      pPerYearElem.textContent = (combinedProb * 100).toFixed(3) + '%';
+
+      if (years > 0) {
+        const pTotal = 1 - Math.pow(1 - combinedProb, years);
+        pTotalYearsElem.textContent = (pTotal * 100).toFixed(3) + '%';
+      } else {
+        pTotalYearsElem.textContent = '–';
+      }
+    }
+
+    // apel inițial pentru a popula la încărcare
+    window.addEventListener('DOMContentLoaded', calculateAll);
+  </script>
 
 </body>
+
 </html>
